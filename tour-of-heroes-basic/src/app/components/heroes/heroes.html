@@ -6,14 +6,10 @@
   <div class="hidden md:block"></div>
 
   <!-- Row 2 -->
-  <ul class="space-y-3">
-    <!-- 
-      TODO: 
-      - Loop through every hero and create the following <li> for each to display its info 
-      - Each hero in the list should be clickable
-    -->
+  <ul class="space-y-3">    
       @for( hero of heroes; track hero.id){
         <li            
+            (click)="onSelect(hero)"
             class="flex items-center justify-between px-4 py-3 rounded-xl shadow-sm border border-gray-200 cursor-pointer hover:bg-gray-100 hover:shadow-md"
             [class.bg-blue-100]="hero === selectedHero"
             [class.border-blue-400]="hero === selectedHero"
@@ -30,10 +26,6 @@
     }   
   </ul>
 
-  <!-- 
-    TODO:
-      - Import the hero-details component, and pass in the hero that was
-        selected by the user from the hero list
-   -->
+    <app-hero-details [hero]="selectedHero"></app-hero-details>
   
 </div>
