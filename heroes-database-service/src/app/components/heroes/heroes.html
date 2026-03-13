@@ -1,0 +1,30 @@
+<div class="grid grid-cols-1 md:grid-cols-2 md:gap-10 items-start">
+  <!-- Row 1 -->
+  <h2 class="mt-4 text-3xl font-bold text-gray-800 mb-4 md:mb-0">The Heroes</h2>
+
+  <!-- Empty cell on first row (desktop only) -->
+  <div class="hidden md:block"></div>
+
+  <!-- Row 2 -->
+  <ul class="space-y-3">
+    @for (item of heroesDbContents | keyvalue; track item.value.id) {
+      <li
+        (click)="onSelect(item.value)"
+        class="flex items-center justify-between px-4 py-3 rounded-xl shadow-sm border border-gray-200 cursor-pointer hover:bg-gray-100 hover:shadow-md"
+        [class.bg-blue-100]="item.value === selectedHero"
+        [class.border-blue-400]="item.value === selectedHero"
+      >
+        <div class="flex items-center space-x-3">
+          <span class="bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-full">
+            {{ item.value.id }}
+          </span>
+          <span class="text-gray-700 font-medium">
+            {{ item.value.name }}
+          </span>
+        </div>
+      </li>
+    }
+  </ul>
+
+  <app-hero-details [hero]="selectedHero"></app-hero-details>
+</div>
