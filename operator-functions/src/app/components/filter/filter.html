@@ -1,0 +1,64 @@
+<div class="container w-11/12 mx-auto px-4 mt-12 pb-60">
+  <div class="mt-8">
+    <h2 class="text-6xl font-bold text-purple-500 mb-4 text-left sm:text-center">
+      filter()<span class="text-blue-600"></span>
+    </h2>
+    <div class="bg-white shadow rounded-lg p-4 mb-6">
+      <div class="w-full">
+        <h2 class="text-3xl font-semibold text-gray-800">Initial Data</h2>
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of data; track $index) {
+            <li
+              class="bg-blue-500 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-blue-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+    <button
+      (click)="runFilter()"
+      class="inline-flex items-center cursor-pointer gap-3 bg-purple-600 text-white text-2xl font-semibold px-6 py-4 rounded-xl shadow-lg hover:bg-purple-700 hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-purple-300"
+    >
+      Run filter()
+    </button>
+    <div class="bg-gray-100 rounded-lg mt-6 shadow p-6 max-w-6xl w-full">
+      <div class="text-2xl mb-4">
+        The <code>filter()</code> function takes in a lambda function by which to do the filtering.
+        The function defined will be used as the predicate by which to filter by.
+      </div>
+      <div class="text-2xl mb-4">
+        The below code shows only the Observable aspect in order to demonstrate how the
+        <code>filter()</code>
+        function works with Observables. The actual code running this animation uses signals in
+        order to create the animation of processing each data element at a time.The code using
+        signals has been omitted below for simplicity, but can be seen in the actual source code for
+        this file.
+      </div>
+      <pre
+        class="text-left text-xl py-4 text-white bg-black whitespace-pre-wrap max-h-140 overflow-y-auto"
+      >
+    this._dataService.dataStream$.pipe(
+      filter((elem) => elem % 2 === 0)      
+    );
+          </pre
+      >
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 mt-6 mb-6">
+      <div class="w-full">
+        <h2 class="text-3xl font-semibold text-gray-800">After Filtering</h2>
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of filteredData(); track $index) {
+            <li
+              class="bg-purple-600 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-purple-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

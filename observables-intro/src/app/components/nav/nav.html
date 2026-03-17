@@ -1,0 +1,37 @@
+<header>
+  <nav class="bg-blue-500 shadow-md border-b">
+    <div class="container mx-auto px-4">
+      <div class="flex w-full">
+        <ul class="flex p-4 text-xl w-1/2 flex-grow space-x-6">
+          <li>
+            <a class="text-white hover:text-gray-300" [routerLink]="['/']">Home</a>
+          </li>
+          <li>
+            <a class="text-white hover:text-gray-200" [routerLink]="['/unicast']">Unicast</a>
+          </li>
+          <li>
+            <a class="text-white hover:text-gray-200" [routerLink]="['/async']">Async Pipe</a>
+          </li>
+          <li>
+            <a class="text-white hover:text-gray-200" [routerLink]="['/subject-multicast']"
+              >Subject Multicast</a
+            >
+          </li>
+          <li>
+            <a class="text-white hover:text-gray-200" [routerLink]="['/pipe-and-operators']"
+              >Pipe and Operators</a
+            >
+          </li>
+        </ul>
+        <ul class="flex p-4 text-xl w-1/2 flex-grow space-x-6">
+          <li>
+            <a class="text-white hover:text-gray-300" [routerLink]="['/request']">Request Data</a>
+          </li>
+          <li>
+            <a class="text-white hover:text-gray-200" [routerLink]="['/display']">Display Data</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

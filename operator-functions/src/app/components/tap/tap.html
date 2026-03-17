@@ -1,0 +1,135 @@
+<div class="container w-11/12 mx-auto px-4 mt-12 pb-80">
+  <div class="mt-8">
+    <h2 class="text-6xl font-bold text-orange-500 mb-8 text-left sm:text-center">tap()</h2>
+
+    <div class="bg-green-500 text-white text-6xl shadow rounded-lg p-4 mb-6">Example A</div>
+    <div class="bg-white shadow rounded-lg p-4 mb-6">
+      <div class="w-full">
+        <h2 class="text-3xl font-semibold text-gray-800">Initial Data</h2>
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of data; track $index) {
+            <li
+              class="bg-blue-500 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-blue-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+    <button
+      (click)="runExampleA()"
+      class="inline-flex cursor-pointer items-center gap-3 bg-green-600 text-white text-2xl font-semibold px-6 py-4 rounded-xl shadow-lg hover:bg-green-700 hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300"
+    >
+      Run tap() - Only Side Effects
+    </button>
+    <div class="bg-gray-100 rounded-lg mt-6 shadow p-6 max-w-5xl w-full">
+      <div class="text-2xl font-bold mb-4">
+        The below two code blocks show only the Observable aspect in order to demonstrate how the
+        <code>tap()</code> function works with Observables. The actual code running this animation
+        uses signals in order to create the animation of processing each data element at a time.The
+        code using signals has been omitted below for simplicity, but can be seen in the actual
+        source code for this file.
+      </div>
+    </div>
+    <div class="bg-gray-100 rounded-lg mt-6 shadow p-6 max-w-5xl w-full">
+      <div class="text-2xl mb-4">
+        Only producing side effects - which means only effecting the stream of data and nothing
+        outside of the stream.
+      </div>
+      <pre
+        class="text-left text-xl py-4 text-white bg-black whitespace-pre-wrap max-h-96 overflow-y-auto"
+      >
+        
+      this._dataService.dataStream$.pipe(
+        tap((elem) => &lbrace;
+          this.messageA.set(`Processing $&lbrace;elem&rbrace;`);
+        &rbrace;)
+      )
+          </pre
+      >
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 mt-6 mb-6">
+      <h2 class="text-3xl font-semibold text-green-500">{{ messageA() }}</h2>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 mt-6 mb-6">
+      <div class="w-full">
+        <h2 class="text-3xl font-semibold text-gray-800">DataA After</h2>
+
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of tapData(); track $index) {
+            <li
+              class="bg-green-500 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-green-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-16">
+    <div class="bg-purple-500 text-white text-6xl shadow rounded-lg p-4 mb-6">Example B</div>
+    <div class="bg-white shadow rounded-lg p-4 mb-6">
+      <div class="w-full">
+        <h2 class="text-3xl font-semibold text-gray-800">Initial Data</h2>
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of data; track $index) {
+            <li
+              class="bg-blue-500 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-blue-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+    <button
+      (click)="runExampleB()"
+      class="inline-flex items-center cursor-pointer gap-3 bg-purple-600 text-white text-2xl font-semibold px-6 py-4 rounded-xl shadow-lg hover:bg-purple-700 hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300"
+    >
+      Run tap() - Attempting to Return
+    </button>
+    <div class="bg-gray-100 rounded-lg mt-6 shadow p-6 max-w-5xl w-full">
+      <div class="text-2xl mb-4">
+        Note that even though we are attempting to return something from tap() that return value is
+        ignored.
+      </div>
+      <pre
+        class="text-left text-xl py-4 text-white bg-black whitespace-pre-wrap max-h-96 overflow-y-auto"
+      >
+        
+      this._dataService.dataStream$.pipe(
+        tap((elem) => &lbrace;
+          this.messageB.set(`Processing $&lbrace;elem&rbrace;`);
+
+          return elem * 2;
+        &rbrace;)
+      )
+          </pre
+      >
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 mt-6 mb-6">
+      <h2 class="text-3xl font-semibold text-purple-500">{{ messageB() }}</h2>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-4 mt-6 mb-6">
+      <div class="w-full">
+        <h2 class="text-3xl font-semibold text-gray-800">DataB After</h2>
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of secondaryTapData(); track $index) {
+            <li
+              class="bg-purple-500 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-purple-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

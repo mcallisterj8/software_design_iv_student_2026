@@ -1,0 +1,178 @@
+<div class="container w-11/12 mx-auto px-4 mt-12 pb-80">
+  <div class="mt-8">
+    <h2 class="text-6xl font-bold text-red-500 mb-8 text-left sm:text-center">
+      Chaining Operators<span class="text-orange-900"></span>
+    </h2>
+  </div>
+  <div class="bg-white shadow rounded-lg p-4 mb-6">
+    <div class="w-full">
+      <h2 class="text-3xl font-semibold text-gray-800">Initial Data</h2>
+      @if (data) {
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of data; track $index) {
+            <li
+              class="bg-blue-500 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-blue-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+  <h2 class="text-6xl font-bold text-gray-800 mb-8 text-left sm:text-center">
+    <div class="bg-gray-100 shadow rounded-lg p-4 mb-6">
+      <span class="text-orange-500">tap()</span><span> -> </span>
+      <span class="text-red-500">map()</span><span> -> </span
+      ><span class="text-purple-500">filter()</span>
+    </div>
+  </h2>
+  <div class="flex items-center flex-col my-12">
+    <button
+      (click)="runChain()"
+      class="inline-flex items-center cursor-pointer gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-2xl font-semibold px-8 py-5 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-blue-300"
+    >
+      Run Chain
+    </button>
+
+    <div class="bg-gray-100 rounded-lg mt-6 shadow p-6 max-w-5xl w-full">
+      <div class="text-2xl mb-4">
+        Note that the below code shows only the Observable aspect in order to demonstrate how the
+        operatator chaining works with Observables. The actual code running this animation uses
+        signals in order to create the animation of processing each data element at a time.The code
+        using signals has been omitted below for simplicity, but can be seen in the actual source
+        code for this file.
+      </div>
+      <pre class="text-left text-xl py-4 text-white bg-black whitespace-pre-wrap overflow-y-auto">
+          
+      this._dataService.dataStream$.pipe(
+        tap((elem) => &lbrace;
+          this.tapData.push(elem);          
+        &rbrace;),
+
+        map((elem) => &lbrace;    
+          return elem * 2;
+        &rbrace;),
+
+        filter((elem) => &lbrace;        
+          return elem % 2 == 0;
+        &rbrace;)
+      );
+            </pre
+      >
+    </div>
+  </div>
+  <div class="bg-orange-500 mt-16 font-semibold text-white text-6xl shadow rounded-lg p-4 mb-6">
+    tap() Initial Data
+  </div>
+  <div class="bg-white shadow rounded-lg p-4 mt-6 mb-6">
+    <div class="w-full">
+      <!-- <h2 class="text-3xl font-semibold text-gray-800">DataA After</h2> -->
+      @if (tapData().length > 0) {
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of tapData(); track $index) {
+            <li
+              class="bg-blue-500 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-blue-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+  <div class="bg-gray-100 rounded-lg mt-6 shadow p-6 max-w-3xl w-full">
+    <pre
+      class="text-left text-xl py-4 text-white bg-black whitespace-pre-wrap max-h-96 overflow-y-auto"
+    >
+      
+        tap((elem) => &lbrace;
+          this.tapInitalData.push(elem);          
+        &rbrace;),
+        </pre
+    >
+  </div>
+
+  <div class="bg-red-500 mt-16 font-semibold text-white text-6xl shadow rounded-lg p-4 mb-6">
+    map() Initial Data
+  </div>
+  <div class="bg-white shadow rounded-lg p-4 mt-6 mb-6">
+    <div class="w-full">
+      <!-- <h2 class="text-3xl font-semibold text-gray-800">DataA After</h2> -->
+      @if (mapData().length > 0) {
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of mapData(); track $index) {
+            <li
+              class="bg-red-500 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-red-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+  <div class="bg-gray-100 rounded-lg mt-6 shadow p-6 max-w-3xl w-full">
+    <pre
+      class="text-left text-xl py-4 text-white bg-black whitespace-pre-wrap max-h-96 overflow-y-auto"
+    >
+      
+    map((elem) => &lbrace;    
+        return elem * 2;
+    &rbrace;),
+        </pre
+    >
+  </div>
+
+  <div class="bg-purple-500 mt-16 font-semibold text-white text-6xl shadow rounded-lg p-4 mb-6">
+    filter() Initial Data
+  </div>
+  <div class="bg-white shadow rounded-lg p-4 mt-6 mb-6">
+    <div class="w-full">
+      <!-- <h2 class="text-3xl font-semibold text-gray-800">DataA After</h2> -->
+      @if (filterData().length > 0) {
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of filterData(); track $index) {
+            <li
+              class="bg-purple-500 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-purple-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+  <div class="bg-gray-100 rounded-lg mt-6 shadow p-6 max-w-3xl w-full">
+    <pre
+      class="text-left text-xl py-4 text-white bg-black whitespace-pre-wrap max-h-96 overflow-y-auto"
+    >
+      
+    filter((elem) => &lbrace;        
+        return elem % 2 == 0;
+     &rbrace;)
+    );
+        </pre
+    >
+  </div>
+
+  <div class="bg-green-500 mt-16 font-semibold text-white text-6xl shadow rounded-lg p-4 mb-6">
+    Final Data
+  </div>
+  <div class="bg-white shadow rounded-lg p-4 mt-6 mb-6">
+    <div class="w-full">
+      <!-- <h2 class="text-3xl font-semibold text-gray-800">DataA After</h2> -->
+      @if (filterData().length > 0) {
+        <ul class="flex flex-wrap gap-4 justify-center">
+          @for (elem of filterData(); track $index) {
+            <li
+              class="bg-blue-500 text-white text-2xl flex justify-center items-center w-12 h-12 rounded-full hover:bg-blue-700 transition-colors duration-300"
+            >
+              {{ elem }}
+            </li>
+          }
+        </ul>
+      }
+    </div>
+  </div>
+</div>
