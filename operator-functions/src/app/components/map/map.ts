@@ -38,13 +38,4 @@ export class Map {
       });
     });
   }
-
-  // public map: boolean = false;
-  // public data$: Observable<number[]> = this._dataService.data$.pipe(
-  //   map((dataArr) => {
-  //     // Note that this inner map() is the map() method on arrays in JavaScript,
-  //     // not the RxJS map() function seen above.
-  //     return dataArr.map((elem) => elem * 2);
-  //   }),
-  // );
 }
