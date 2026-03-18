@@ -21,12 +21,14 @@ export class ApiService {
   public webCall(): Observable<any> {
     // console.log('IN WEB CALL');
     // Another option for site: https://jsonplaceholder.typicode.com/users
-    https: return this._http.get<any>(`https://dog.ceo/api/breeds/image/random`);
+    return this._http.get<any>(`https://dog.ceo/api/breeds/image/random`);
   }
 
   public webCallFillSubject(): Observable<any> {
+    console.log('in method webCallFillSubject()');
     return this._http.get<any>(`https://dog.ceo/api/breeds/image/random`).pipe(
       tap((data) => {
+        console.log('firing');
         // Taking the data from the API and placing it into the BehaviorSubject.
         this._apiDataSubject.next(data);
       }),

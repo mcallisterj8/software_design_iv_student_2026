@@ -22,5 +22,6 @@ export class SubjectMulticasting {
     // Subscribing to the Subject twice
     subject.subscribe((value) => console.log(`Subject Subscriber 1: ${value}`));
     subject.subscribe((value) => console.log(`Subject Subscriber 2: ${value}`));
+    subject.next(4);
   }
 }
