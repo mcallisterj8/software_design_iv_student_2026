@@ -12,11 +12,11 @@ import { HeroDetails } from '../hero-details/hero-details';
   styleUrl: './heroes.css',
 })
 export class Heroes {
-  private heroDbService = inject(HeroDbService);
+  private _heroDbService = inject(HeroDbService);
 
   // Using the service to load in all of the heroes, rather than having
   // the heroes hard-coded in this component.
-  public heroesDbContents: HeroDb = this.heroDbService.loadDb();
+  public heroesDbContents: HeroDb = this._heroDbService.loadDb();
   public selectedHero: Hero | null = null;
 
   public onSelect(hero: Hero): void {
