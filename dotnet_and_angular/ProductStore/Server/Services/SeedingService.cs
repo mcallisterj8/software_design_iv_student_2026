@@ -90,6 +90,6 @@ public class SeedingService {
 
         await _context.Products.AddRangeAsync(products);
 
-        await _context.SaveChangesAsync().ConfigureAwait(false);
+        await _context.SaveChangesAsync();
     }
 }

@@ -9,7 +9,8 @@ import { Product } from '../models/product';
 export class ProductService {
   private _http = inject(HttpClient);
   
-  private _productListSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([] as Product[]);
+  private _productListSubject: BehaviorSubject<Product[]> 
+    = new BehaviorSubject<Product[]>([] as Product[]);
   
   private _productSubject: BehaviorSubject<Product | null> =
     new BehaviorSubject<Product | null>(null);
@@ -29,5 +30,22 @@ export class ProductService {
     return this._productSubject.value;
   }
 
+  public getAllProducts(): Observable<Product[]> {
+    console.log('getting products');
+    return this._http.get<Product[]>(`/api/products`).pipe(
+      tap((productList) => {
+        console.log(productList);
+        this._productListSubject.next(productList);
+      })
+    );
+  }
+
+  public getProductById(productId: number): Observable<Product> {
+    return this._http.get<Product>(`/api/products/${productId}`);
+  }
+
+  public select(product: Product | null): void {
+
+  }
   
 }
