@@ -1,4 +1,3 @@
-**/obj/
-**/bin/
+
 app.db-shm
 app.db-wal
