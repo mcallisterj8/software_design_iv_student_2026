@@ -1,0 +1,26 @@
+@if (product) {
+  <div
+    class="border rounded-lg shadow-lg hover:shadow-xl hover:bg-blue-100 hover:cursor-pointer p-4"
+  >
+    <div class="space-y-4">
+      <h3 class="text-3xl font-bold text-gray-800">{{ product.name }}</h3>
+      <p class="text-xl text-gray-600">{{ product.description }}</p>
+      <p class="text-xl text-gray-700">
+        {{ product.price | currency: 'USD' }}
+      </p>
+      <p
+        class="text-xl font-semibold"
+        [class]="product.isAvailable ? 'text-green-600' : 'text-red-600'"
+      >
+        {{ product.isAvailable ? 'Available' : 'Not Available' }}
+      </p>
+
+      <button
+        (click)="view()"
+        class="mt-4 px-6 py-2 bg-blue-600 text-white cursor-pointer rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg"
+      >
+        View
+      </button>
+    </div>
+  </div>
+}
