@@ -20,7 +20,7 @@ export class ProductDetails implements OnInit {
 
   ngOnInit(): void {
     if (!this._productService.product) {
-      this.getProductFromRoute().subscribe();
+      this.getProductFromRoute().subscribe();      
     }
   }
 

@@ -9,12 +9,14 @@ import { Product } from '../models/product';
 export class ProductService {
   private _http = inject(HttpClient);
   
+  // BehaviorSubjects
   private _productListSubject: BehaviorSubject<Product[]> 
     = new BehaviorSubject<Product[]>([] as Product[]);
   
   private _productSubject: BehaviorSubject<Product | null> =
     new BehaviorSubject<Product | null>(null);
 
+  // Observables
   public productList$: Observable<Product[]> =
     this._productListSubject.asObservable();
 
