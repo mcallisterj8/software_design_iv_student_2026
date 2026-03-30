@@ -12,7 +12,7 @@ export class SearchBar {
 
   public searchQuery: string = '';
 
-  @Input() placeHolder: string = '';
+  @Input() placeHolder!: string;
 
   public search(): void {
     this._searchService.setSearchQuery(this.searchQuery);
