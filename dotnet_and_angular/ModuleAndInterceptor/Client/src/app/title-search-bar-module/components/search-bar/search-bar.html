@@ -1,0 +1,24 @@
+<form class="flex items-center space-x-2 bg-gray-200 p-3 rounded-md">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-6 w-6 text-gray-800"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+    />
+  </svg>
+  <input
+    [(ngModel)]="searchQuery"
+    (ngModelChange)="search()"
+    name="searchQuery"
+    type="text"
+    placeholder="{{ placeHolder }}"
+    class="bg-gray-200 text-gray-700 placeholder-gray-200 outline-none flex-1"
+  />
+</form>
