@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private readonly tokenKey = 'accessToken';
+  
   private _http = inject(HttpClient);
   private _router = inject(Router);
 
@@ -28,6 +29,8 @@ export class AuthService {
   public register(details: EmailLoginDetails): Observable<UserDto> {
     return this._http.post<UserDto>(`/api/auth/register`, details);
   }
+
+
   public login(credentials: EmailLoginDetails): Observable<LoginResponse> {
     return this._http.post<LoginResponse>(`/api/auth/login`, credentials).pipe(
       tap((response) => {
@@ -37,14 +40,6 @@ export class AuthService {
       }),
     );
   }
-
-  // public setToken(token: string): void {
-  //   localStorage.setItem(this.tokenKey, token);
-  // }
-
-  // public getToken(): string | null {
-  //   return localStorage.getItem(this.tokenKey);
-  // }
 
   public clearToken(): void {
     localStorage.removeItem(this.tokenKey);

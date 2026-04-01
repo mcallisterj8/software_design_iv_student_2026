@@ -13,7 +13,7 @@ export class GreetingTwo implements OnInit {
   public greeting = signal('');
 
   ngOnInit(): void {
-    this._greetingService.greetingOne().subscribe((resp) => {
+    this._greetingService.greetingTwo().subscribe((resp) => {
       this.greeting.set(resp.message);
     });
   }

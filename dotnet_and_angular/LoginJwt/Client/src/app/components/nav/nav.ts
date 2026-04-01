@@ -10,7 +10,9 @@ import { AuthService } from '../../auth/services/auth-service';
 })
 export class Nav {
   private _authService = inject(AuthService);
+  
   public isLoggedIn: WritableSignal<boolean> = this._authService.isLoggedIn;
+
   public logout(): void {
     console.log('logout heard!');
     this._authService.logout();
