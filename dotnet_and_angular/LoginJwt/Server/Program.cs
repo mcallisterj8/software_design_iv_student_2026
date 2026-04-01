@@ -8,7 +8,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Database
+// Database connection
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
@@ -18,16 +18,25 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddControllers();
-
 builder.Services.AddDefaultIdentity<IdentityUser>(options => {
     options.SignIn.RequireConfirmedAccount = false;
 })
-.AddRoles<IdentityRole>()
-.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddRoles<IdentityRole>() // This call to AddRoles() is not strictly for JWTs, but it is just telling Identity Framework to use role-based authorization. We don't need this in our example. In many setups, however, you will use this, so giving example here for it.
+.AddEntityFrameworkStores<ApplicationDbContext>() // This tells dotnet to use the ApplicationDbContext (the database) for storing Identity data.
 .AddDefaultTokenProviders(); // Adding token providers for the JWTs
 
-// JWT settings from appsettings.json
+/*
+    In a default dotnet project created with Identity, this will be
+    AddControllersWithViews() instead of the AddControllers() call
+    seen below. Keeping AddControllersWithViews() is fine and will not
+    interfere with anything. The AddControllersWithViews() tells dotnet
+    that it will use the Razor pages for the frontend. Since we are just
+    using dotnet as a backend API, all we need is the controller
+    feature, not the fronted Razor pages.
+*/
+builder.Services.AddControllers();
+
+// Retrieve JWT settings from appsettings.json
 string? jwtKey = builder.Configuration["Jwt:Key"];
 string? jwtIssuer = builder.Configuration["Jwt:Issuer"];
 string? jwtAudience = builder.Configuration["Jwt:Audience"];
