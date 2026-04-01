@@ -76,7 +76,7 @@ export class Register {
         this.registerNgForm.resetForm();
 
         // Set the error message
-        this.errorMessages = err.error.errors;
+        this.errorMessages = err.error;
       },
     });
   }

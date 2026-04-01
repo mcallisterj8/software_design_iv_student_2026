@@ -62,7 +62,6 @@ public class AuthController : ControllerBase {
         AuthResult authResult = await RegisterWithEmail(Request, details);
 
         if (authResult.HasErrors) {
-
             return BadRequest(authResult.Errors);
         }
 
@@ -75,7 +74,7 @@ public class AuthController : ControllerBase {
         var user = await _userManager.FindByEmailAsync(details.Email);
 
         if (null == user) {
-            return Unauthorized();
+            return Unauthorized("Wrong email or password.");
         }
 
         var result = await _signInManager.PasswordSignInAsync(details.Email, details.Password, details.RememberMe, false).ConfigureAwait(false);

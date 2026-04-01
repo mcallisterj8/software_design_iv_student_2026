@@ -71,8 +71,7 @@ export class Login {
         this.loginNgForm.resetForm();
 
         // Set the alert
-
-        this.message = 'Wrong email or password';
+        this.message = err.error;
 
         // Show the alert
         this.showAlert = true;
