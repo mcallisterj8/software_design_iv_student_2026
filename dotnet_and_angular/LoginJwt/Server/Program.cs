@@ -117,9 +117,14 @@ if (app.Environment.IsDevelopment()) {
 }
 
 app.UseHttpsRedirection();
+/*
+    Determines which route is attempted to be reached.
+*/
 app.UseRouting();
 
 /*
+    UseAuthentication() determines which user is attempting to access a route.
+
     Must have this app.UseAuthentication(), and it must come *before* the authorization & controller calls below. 
     Remember that the file is executed top-down and we need the authentication turned on and running if we
     want the authorization features to work with the auth setup we have (JWTs in our case), and if we
@@ -127,8 +132,15 @@ app.UseRouting();
     to use the [Authorize] attribute).
 */
 app.UseAuthentication();
+/*
+    UseAuthorization() makes the determination, now that we know WHO is trying
+    to access a given route, if that user is ALLOWED to access the given route.
+*/
 app.UseAuthorization();
 
+/*
+    MapControllers() makes the controller actions (endpoints) available as destinations.
+*/
 app.MapControllers();
 
 app.Run();
