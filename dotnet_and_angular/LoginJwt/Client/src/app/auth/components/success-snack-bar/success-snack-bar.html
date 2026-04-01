@@ -1,0 +1,13 @@
+<div class="flex items-center w-full bg-green-700 rounded-lg p-4">
+  <p class="text-lg font-semibold text-white flex-grow">{{ message }}</p>
+  <span matSnackBarActions>
+    <button
+      class="text-white font-semibold ml-auto hover:font-bold hover:bg-green-500 rounded-md px-2 py-1"
+      mat-button
+      matSnackBarAction
+      (click)="snackBarRef.dismissWithAction()"
+    >
+      Close
+    </button>
+  </span>
+</div>
