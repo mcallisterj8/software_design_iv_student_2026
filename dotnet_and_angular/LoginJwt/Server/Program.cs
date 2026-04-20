@@ -19,7 +19,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => {
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => {
-    options.SignIn.RequireConfirmedAccount = false;
+    options.SignIn.RequireConfirmedAccount = false; // Setting this to false means you do not have to confirm emails before logging in.
 })
 .AddRoles<IdentityRole>() // This call to AddRoles() is not strictly for JWTs, but it is just telling Identity Framework to use role-based authorization. We don't need this in our example. In many setups, however, you will use this, so giving example here for it.
 .AddEntityFrameworkStores<ApplicationDbContext>() // This tells dotnet to use the ApplicationDbContext (the database) for storing Identity data.
